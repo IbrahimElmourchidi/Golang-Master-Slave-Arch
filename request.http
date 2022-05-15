@@ -1,0 +1,40 @@
+### create new author
+POST http://localhost:9000/api/authors
+Content-Type: application/json
+
+{
+  "First":"omda",
+  "Last":"sultan"
+}
+
+
+### get all books
+GET http://localhost:9000/api/books
+
+### get single book
+GET http://localhost:9000/api/books/1
+
+### Create new book 
+POST http://localhost:9000/api/books
+Content-Type: application/json
+
+{
+ "Isbn":"111",
+  "Title":"omda",
+  "AuthorID": 1
+}
+
+### delete a book by id
+DELETE http://localhost:9000/api/books/1
+
+
+### update book
+
+PUT http://localhost:9000/api/books/1
+Content-Type: application/json
+
+{
+  "Isbn":"123456",
+  "Title": "book updated",
+  "AuthorID": 1
+}
