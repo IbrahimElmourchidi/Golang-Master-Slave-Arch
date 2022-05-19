@@ -14,6 +14,7 @@ func handleNewConnection(conn net.Conn, body string) {
 
 	// go sendBackEvents(conn, backEvents)
 	fmt.Println(node.Ip+":"+node.Port, "is connected")
+	conn.Close()
 }
 
 func handleCreateAuthor(conn net.Conn, body string) {
@@ -31,7 +32,7 @@ func handleCreateBook(conn net.Conn, body string) {
 	book := bookParser(body)
 	dbOk, _ := createBook(book)
 	if dbOk {
-		saveEvent("001", body)
+		saveEvent("002", body)
 		conn.Close()
 	} else {
 		sendErrorMessage(conn)
@@ -42,7 +43,7 @@ func handleUpdateBook(conn net.Conn, body string) {
 	book := bookParser(body)
 	dbOk, _ := updateBook(book)
 	if dbOk {
-		saveEvent("001", body)
+		saveEvent("003", body)
 		conn.Close()
 	} else {
 		sendErrorMessage(conn)
@@ -54,7 +55,7 @@ func handleDeleteBook(conn net.Conn, body string) {
 	book := bookParser(body)
 	dbOk := deleteBook(strconv.Itoa(book.ID))
 	if dbOk {
-		saveEvent("001", body)
+		saveEvent("004", body)
 		conn.Close()
 	} else {
 		sendErrorMessage(conn)

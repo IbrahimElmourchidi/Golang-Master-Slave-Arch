@@ -3,8 +3,8 @@ POST http://localhost:9000/api/authors
 Content-Type: application/json
 
 {
-  "First":"omda",
-  "Last":"sultan"
+  "First":"abdallah",
+  "Last":"ahmed"
 }
 
 
@@ -19,8 +19,8 @@ POST http://localhost:9000/api/books
 Content-Type: application/json
 
 {
- "Isbn":"111",
-  "Title":"omda",
+ "Isbn":"123",
+  "Title":"book1",
   "AuthorID": 1
 }
 
@@ -30,7 +30,7 @@ DELETE http://localhost:9000/api/books/1
 
 ### update book
 
-PUT http://localhost:9000/api/books/1
+PUT http://localhost:9000/api/books/1999
 Content-Type: application/json
 
 {
