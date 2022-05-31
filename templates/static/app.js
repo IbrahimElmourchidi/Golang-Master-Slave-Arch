@@ -45,7 +45,9 @@ function updateBook() {
       Isbn: this.document.querySelector('#Isbn').value,
       Title: this.document.querySelector('#Title').value,
       Price: parseInt(this.document.querySelector('#Price').value),
-      AuthorID: parseInt(this.document.querySelector('#Author').value),
+      AuthorID: parseInt(
+        this.document.querySelector('#Author-updateBook').value
+      ),
     },
   })
     .then(() => location.replace('/home'))

@@ -47,7 +47,7 @@
             <td>{{.ID}}</td>
             <td>{{.Title}}</td>
             <td>{{.Price}}</td>
-            <td><a href="author/{{.Author.ID}}">{{.Author.First}}</a></td>
+            <td>{{.Author.First}}</td>
             <td>
               <a href="/update/{{.ID}}" class="btn btn-primary"> update </a>
               <button class="btn btn-danger" onclick="DeleteBook({{.ID}})">
