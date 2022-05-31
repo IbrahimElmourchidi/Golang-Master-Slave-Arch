@@ -12,7 +12,9 @@ type Book struct {
 	ID       int    `json:"ID" gorm:"autoIncrement" gorm:"primaryKey"`
 	Isbn     string `json:"Isbn"`
 	Title    string `json:"Title"`
+	Price    int    `json:"Price"`
 	AuthorID int    `json:"AuthorID"`
+	Author   Author
 }
 
 // author struct
@@ -60,7 +62,7 @@ func createAuthor(author Author) (bool, Author) {
 // book related functions
 
 func createBook(book Book) (bool, Book) {
-	result := dbManager.Create(&book)
+	result := dbManager.Preload("Author").Create(&book)
 	if result.Error == nil {
 		return true, book
 	}
@@ -77,9 +79,7 @@ func deleteBook(id string) bool {
 }
 
 func updateBook(book Book) (bool, Book) {
-	fmt.Println(book)
 	result := dbManager.Save(&book)
-	fmt.Println(result)
 	if result.Error == nil {
 		return true, book
 	}

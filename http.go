@@ -82,9 +82,25 @@ func createBookHandler(w http.ResponseWriter, r *http.Request) {
 func getBooksHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("content-type", "application/json")
 	var allBooks []Book
-	err := dbManager.Find(&allBooks).Error
+	err := dbManager.Preload("Author").Find(&allBooks).Error
 	if err == nil {
 		json.NewEncoder(w).Encode(allBooks)
+	} else {
+		json.NewEncoder(w).Encode(StatusMessage{
+			Code:    "500",
+			Message: "Internal Server Error",
+		})
+	}
+}
+
+// get all authors
+func getAuthorsHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("content-type", "application/json")
+	var allAuthors []Author
+	err := dbManager.Find(&allAuthors).Error
+
+	if err == nil {
+		json.NewEncoder(w).Encode(allAuthors)
 	} else {
 		json.NewEncoder(w).Encode(StatusMessage{
 			Code:    "500",
@@ -192,6 +208,7 @@ func assign(original Book, final Book) Book {
 	original.Isbn = final.Isbn
 	original.Title = final.Title
 	original.AuthorID = final.AuthorID
+	original.Price = final.Price
 	return original
 }
 

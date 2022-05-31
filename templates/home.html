@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="/static/bootstrap.min.css" rel="stylesheet" />
+    <script src="/static/bootstrap.bundle.min.js" defer></script>
+    <script src="/static/axios.min.js" defer></script>
+    <script src="/static/app.js" defer></script>
+  </head>
+  <body>
+    <div class="container text-center">
+      <div class="row">
+        <h3>Welcome to the Book Store Managment System</h3>
+      </div>
+      <div class="w-100 pt-4 mt-4">
+        <button
+          data-bs-toggle="modal"
+          data-bs-target="#newAuthorModal"
+          class="btn btn-success ms-auto"
+        >
+          Add New Author
+        </button>
+        <button
+          data-bs-toggle="modal"
+          data-bs-target="#newBookModal"
+          class="btn btn-success ms-auto"
+          href="/add-book"
+          onclick="ParseAuthor('Author-newBook')"
+        >
+          Add New Book
+        </button>
+      </div>
+      <div class="row p-4 mt-4">
+        <table class="table table-bordered table-striped">
+          <tr class="">
+            <th>ID</th>
+            <th>Book Name</th>
+            <th>Book Price</th>
+            <th>Book Author</th>
+            <th>options</th>
+          </tr>
+          {{range .}}
+          <tr>
+            <td>{{.ID}}</td>
+            <td>{{.Title}}</td>
+            <td>{{.Price}}</td>
+            <td><a href="author/{{.Author.ID}}">{{.Author.First}}</a></td>
+            <td>
+              <a href="/update/{{.ID}}" class="btn btn-primary"> update </a>
+              <button class="btn btn-danger" onclick="DeleteBook({{.ID}})">
+                delete
+              </button>
+            </td>
+          </tr>
+          {{end}}
+        </table>
+      </div>
+    </div>
+
+    <!-- new book modal -->
+
+    <div
+      class="modal fade"
+      id="newBookModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add New Book</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form action="" class="m-4">
+              <div class="mb-3">
+                <label for="Author-newBook">Author</label>
+                <select
+                  name="Author"
+                  id="Author-newBook"
+                  class="form-control"
+                ></select>
+              </div>
+              <div class="mb-3">
+                <label for="Isbn-newBook">Book Isbn</label>
+                <input
+                  type="text"
+                  name="Isbn"
+                  id="Isbn-newBook"
+                  class="form-control"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="Title-newBook">Book title</label>
+                <input
+                  type="text"
+                  name="Title"
+                  id="Title-newBook"
+                  class="form-control"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="Price-newBook">Book Price</label>
+                <input
+                  type="number"
+                  name="Price"
+                  id="Price-newBook"
+                  class="form-control"
+                />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" onclick="addBook()">
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- new book modal ends -->
+
+    <!-- new Author modal -->
+
+    <div
+      class="modal fade"
+      id="newAuthorModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add New Author</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form action="" class="m-4">
+              <div class="mb-3">
+                <label for="First">First Name:</label>
+                <input
+                  type="text"
+                  name="First"
+                  id="First"
+                  class="form-control"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="Last">Last Name:</label>
+                <input type="text" name="Last" id="Last" class="form-control" />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" onclick="addAuthor()">
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- new Author modal ends -->
+  </body>
+</html>
