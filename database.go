@@ -69,7 +69,7 @@ func createBook(book Book) (bool, Book) {
 	return false, book
 }
 
-func deleteBook(id string) bool {
+func deleteBook(id int) bool {
 	book := Book{}
 	err := dbManager.Delete(&book, id).Error
 	if err != nil {

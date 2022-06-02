@@ -137,7 +137,8 @@ func deleteBookHandler(w http.ResponseWriter, r *http.Request) {
 		})
 		return
 	}
-	dbOk := deleteBook(params["id"])
+	idInt, _ := strconv.Atoi(params["id"])
+	dbOk := deleteBook(idInt)
 	if dbOk {
 		message := tcpMessage{
 			Code: "004",
