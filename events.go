@@ -90,7 +90,7 @@ func authorParser(body string) Author {
 }
 
 func bookParser(body string) Book {
-	body = trimBody(body)
+	fmt.Println(body)
 	ID := strings.Split(body, " ")[0]
 	idInt, _ := strconv.Atoi(ID)
 	Isbn := strings.Split(body, " ")[1]
@@ -98,7 +98,6 @@ func bookParser(body string) Book {
 	price := strings.Split(body, " ")[3]
 	priceInt, _ := strconv.Atoi(price)
 	authorID := strings.Split(body, " ")[4]
-	author := strings.Split(body, " ")[5]
 	authInt, _ := strconv.Atoi(authorID)
 	return Book{
 		ID:       idInt,
@@ -106,8 +105,6 @@ func bookParser(body string) Book {
 		Title:    Title,
 		Price: priceInt,
 		AuthorID: authInt,
-		Author: authorParser(author),
-
 	}
 }
 
