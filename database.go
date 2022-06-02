@@ -73,6 +73,7 @@ func deleteBook(id int) bool {
 	book := Book{}
 	err := dbManager.Delete(&book, id).Error
 	if err != nil {
+		fmt.Println(err)
 		return false
 	}
 	return true
@@ -88,7 +89,7 @@ func updateBook(book Book) (bool, Book) {
 
 func BookExist(id string) (bool, Book) {
 	bookFound := Book{}
-	err := dbManager.First(&bookFound, id).Error
+	err := dbManager.Preload("Author").First(&bookFound, id).Error
 	if err == nil {
 		return true, bookFound
 	} else {

@@ -130,6 +130,9 @@ func deleteBookHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("content-type", "application/json")
 	params := mux.Vars(r)
 	exist, dbBook := BookExist(params["id"])
+	fmt.Println("hello")
+	fmt.Println(dbBook)
+
 	if exist == false {
 		json.NewEncoder(w).Encode(StatusMessage{
 			Code:    "404",
