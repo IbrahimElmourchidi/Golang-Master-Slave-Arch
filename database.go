@@ -62,7 +62,8 @@ func createAuthor(author Author) (bool, Author) {
 // book related functions
 
 func createBook(book Book) (bool, Book) {
-	result := dbManager.Preload("Author").Create(&book)
+	result := dbManager.Create(&book)
+	fmt.Println(result)
 	if result.Error == nil {
 		return true, book
 	}

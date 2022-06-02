@@ -53,9 +53,11 @@ func createBookHandler(w http.ResponseWriter, r *http.Request) {
 			Message: "Internal server error",
 		})
 	}
-	authorExist, _ := authorExist(strconv.Itoa(bookStruct.AuthorID))
+	authorExist, foundAuthor := authorExist(strconv.Itoa(bookStruct.AuthorID))
 	if authorExist {
+		bookStruct.Author = foundAuthor
 		dbOk, dbBook := createBook(bookStruct)
+		fmt.Println(dbBook)
 		if dbOk {
 			message := tcpMessage{
 				Code: "002",

@@ -95,13 +95,19 @@ func bookParser(body string) Book {
 	idInt, _ := strconv.Atoi(ID)
 	Isbn := strings.Split(body, " ")[1]
 	Title := strings.Split(body, " ")[2]
-	AuthorID := strings.Split(body, " ")[3]
-	authInt, _ := strconv.Atoi(AuthorID)
+	price := strings.Split(body, " ")[3]
+	priceInt, _ := strconv.Atoi(price)
+	authorID := strings.Split(body, " ")[4]
+	author := strings.Split(body, " ")[5]
+	authInt, _ := strconv.Atoi(authorID)
 	return Book{
 		ID:       idInt,
 		Isbn:     Isbn,
 		Title:    Title,
+		Price: priceInt,
 		AuthorID: authInt,
+		Author: authorParser(author),
+
 	}
 }
 
@@ -135,3 +141,4 @@ func sendBackEvents(conn net.Conn, body string) {
 	}
 	conn.Close()
 }
+
