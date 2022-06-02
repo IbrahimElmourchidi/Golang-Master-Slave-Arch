@@ -53,7 +53,6 @@ func handleUpdateBook(conn net.Conn, body string) {
 
 func handleDeleteBook(conn net.Conn, body string) {
 	book := bookParser(body)
-	fmt.Println(book.ID)
 	dbOk := deleteBook(book.ID)
 	if dbOk {
 		saveEvent("004", body)
@@ -91,6 +90,7 @@ func authorParser(body string) Author {
 }
 
 func bookParser(body string) Book {
+	body = trimBody(body)
 	ID := strings.Split(body, " ")[0]
 	idInt, _ := strconv.Atoi(ID)
 	Isbn := strings.Split(body, " ")[1]
