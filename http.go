@@ -57,7 +57,6 @@ func createBookHandler(w http.ResponseWriter, r *http.Request) {
 	if authorExist {
 		bookStruct.Author = foundAuthor
 		dbOk, dbBook := createBook(bookStruct)
-		fmt.Println(dbBook)
 		if dbOk {
 			message := tcpMessage{
 				Code: "002",

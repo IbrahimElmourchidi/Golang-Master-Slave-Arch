@@ -63,7 +63,6 @@ func createAuthor(author Author) (bool, Author) {
 
 func createBook(book Book) (bool, Book) {
 	result := dbManager.Create(&book)
-	fmt.Println(result)
 	if result.Error == nil {
 		return true, book
 	}
