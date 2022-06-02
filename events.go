@@ -53,7 +53,7 @@ func handleUpdateBook(conn net.Conn, body string) {
 
 func handleDeleteBook(conn net.Conn, body string) {
 	book := bookParser(body)
-	dbOk := deleteBook(strconv.Itoa(book.ID))
+	dbOk := deleteBook(book.ID)
 	if dbOk {
 		saveEvent("004", body)
 		conn.Close()
