@@ -31,7 +31,7 @@ function updatePage() {
     this.document.querySelector('#Title').value = data.Title;
     this.document.querySelector('#Price').value = data.Price;
   });
-  // ParseAuthor('Author-updateBook');
+  ParseAuthor('Author-updateBook');
   let title = document.querySelector('#update-title');
   title.textContent;
 }
@@ -45,6 +45,9 @@ function updateBook() {
       Isbn: this.document.querySelector('#Isbn').value,
       Title: this.document.querySelector('#Title').value,
       Price: parseInt(this.document.querySelector('#Price').value),
+      AuthorID: parseInt(
+        this.document.querySelector('#Author-updateBook').value
+      ),
     },
   })
     .then(() => location.replace('/home'))
