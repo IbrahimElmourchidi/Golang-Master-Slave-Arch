@@ -179,8 +179,8 @@ func updateBookHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	// check if book exsist & author exist
 	bookExist, bookFound := BookExist(params["id"])
-	authorExist, _ := authorExist(strconv.Itoa(bookStruct.AuthorID))
-	if bookExist && authorExist {
+	// authorExist, _ := authorExist(strconv.Itoa(bookStruct.AuthorID))
+	if bookExist {
 		bookFound = assign(bookFound, bookStruct)
 		dbOk, dbBook := updateBook(bookFound)
 		if dbOk {
