@@ -41,6 +41,7 @@ func handleCreateBook(conn net.Conn, body string) {
 
 func handleUpdateBook(conn net.Conn, body string) {
 	book := bookParser(body)
+	fmt.Println(body)
 	dbOk, _ := updateBook(book)
 	if dbOk {
 		saveEvent("003", body)
